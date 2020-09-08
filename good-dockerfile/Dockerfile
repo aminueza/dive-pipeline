@@ -1,7 +1,14 @@
-FROM python:3
+FROM python:3.8.3-alpine3.11
 
-COPY fibonacci.py /
+COPY requirements.txt /tmp/
 
-RUN pip install flask
+RUN pip install -r /tmp/requirements.txt
 
-CMD ["python", "./fibonacci.py", "10"]
+RUN adduser -D diveuser
+WORKDIR /home/diveuser
+USER diveuser
+
+COPY fibonacci.py .
+
+ENTRYPOINT [ "python", "./fibonacci.py" ]
+CMD ["10"]
