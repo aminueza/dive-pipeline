@@ -19,7 +19,7 @@ jobs:
       timeout-minutes: 10
       run: |
         docker build . \
-        --file Dockerfile \
+        --file bad-dockerfile/Dockerfile \
         --tag dive-python-poc
 
     - name: Explore docker image
