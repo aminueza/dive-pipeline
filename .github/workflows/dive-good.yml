@@ -1,4 +1,4 @@
-name: Dive tool (PoC)
+name: Dive tool (PoC) good dockerfile
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
       with:
           fetch-depth: 1
 
-    - name: Build bad docker example
+    - name: Build good docker example
       timeout-minutes: 10
       run: |
         docker build . \

@@ -1,4 +1,4 @@
-name: Dive tool (PoC)
+name: Dive tool (PoC) bad dockefile
 on:
   push:
     branches:

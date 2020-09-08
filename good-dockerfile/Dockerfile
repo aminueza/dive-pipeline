@@ -1,6 +1,6 @@
 FROM python:3.8.3-alpine3.11
 
-COPY good-dockerfile/requirements.txt /tmp/
+COPY requirements.txt /tmp/
 
 RUN pip install -r /tmp/requirements.txt
 
