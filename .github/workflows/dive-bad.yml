@@ -1,0 +1,31 @@
+name: Dive tool (PoC)
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  dive-docker:
+    name: Build Python Image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - name: Check out source code
+      uses: actions/checkout@master
+      with:
+          fetch-depth: 1
+
+    - name: Build bad docker example
+      timeout-minutes: 10
+      run: |
+        docker build . \
+        --file bad-dockerfile/Dockerfile \
+        --tag dive-python-poc-bad
+
+    - name: Explore docker image
+      timeout-minutes: 2
+      env:
+        CI: "true"
+      run: |
+        wget -qO- https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.tar.gz | sudo tar xvz -C /usr/local/bin
+        dive --ci-config "${{ github.workspace }}/.dive-ci" dive-python-poc-bad
